@@ -2,11 +2,11 @@
 session_start();
 echo"<meta charset='UTF-8'>";
 
-$lekid=$lekil=$uzytkownik=""; 
+$lekid=$lekil=$uzytkownik=$zostalo="";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
-    $lekid = $_POST["IdLeku"]
-    $lekil = $_POST["Ilosc"]
+    $lekid = $_POST["IdLeku"];
+    $lekil = $_POST["Ilosc"];
     $uzytkownik = $_SESSION["current_user"];
 }
 
@@ -24,7 +24,7 @@ $sql = "INSERT INTO zazycia (IdZazycia, user_id, IdLeku, Ilosc, DataZazycia)
         VALUES (NULL, '$uzytkownik', '$lekid', '$lekil', CURRENT_DATE())";
 
 if (mysqli_query($dbconn, $sql)){
-    echo "Dopisano!";
+    echo "Dopisano ";
 } 
 else {
     echo "Błąd: ".$esql."<br>".mysqli_error($dbconn);
@@ -33,7 +33,7 @@ else {
 $esql = "SELECT Ilosc FROM leki WHERE IdLeku = $lekid";
 $eresult = mysqli_query($dbconn, $esql);
 
-if (mysqli_num_rows($eresult)>0){
+if (mysqli_num_rows($eresult) > 0){
     while($erow = mysqli_fetch_assoc($eresult)){
         $zostalo=$erow["Ilosc"]-$lekil;
     }
@@ -41,13 +41,14 @@ if (mysqli_num_rows($eresult)>0){
 
 $sqle = "UPDATE leki SET Ilosc = $zostalo WHERE IdLeku = $lekid";
 
+
 if (mysqli_query($dbconn, $sqle)){
-    echo "Zaaktualizowano!";
+    echo "i zaaktualizowano!<br>";
 }
 else{
-    echo "Błą: ".$sqle."<br>".mysqli_error($dbconn);
+    echo "Błąd: ".$sqle."<br>".mysqli_error($dbconn);
 }
 
 echo "<a href='./apteka.php'>...:::Zawartość Apteczki:::...</a><br>";
-echo "<a href='.zazycia.php'>...:::Kto co zażył:::...</a><br>";
+echo "<a href='./zazycia.php'>...:::Kto co zażył:::...</a><br>";
 ?>
