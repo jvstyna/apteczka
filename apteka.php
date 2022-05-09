@@ -23,3 +23,5 @@ if (mysqli_num_rows($result)>0){
         echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td>".$row["Ilosc"]."</td><td><a href='./zazycie.php?ajdi=".
     }
 }
+
+//paris jest super
