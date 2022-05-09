@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
     else
     {
-        $user_fullname=chgw($_POST["name"]);
+        $name=chgw($_POST["name"]);
     }
     if(empty($_POST["email"]))
     {
@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
     else
     {
-        $user_email=chgw($_POST["email"]);
+        $email=chgw($_POST["email"]);
     }
     if(empty($_POST["userpassword"]))
     {
@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
     else
     {
-        $user_password=chgw($_POST["userpassword"]);
+        $passwd=chgw($_POST["userpassword"]);
     }
 }
 
@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $dbconn = mysqli_connect($servername, $username, $password, $dbname);
     $user_fullname = mysqli_real_escape_string($dbconn, $name);
     $user_email = mysqli_real_escape_string($dbconn, $email);
-    $user_password = mysqli_real_escape_string($dbconn, $user_password);
+    $user_password = mysqli_real_escape_string($dbconn, $passwd);
 
     $user_password_hash = password_hash($user_password, PASSWORD_DEFAULT);
     echo "<br>".$imErr."<br".$mailErr."<br>".$passErr;
