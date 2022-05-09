@@ -14,12 +14,19 @@ $dbconn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$dbconn){
     die("Connection failed: ".mysqli_connect_error());
 }
-echo"<table border=1><tr><th>ID leku</th><th>Nazwa</th><th>Data ważności</th><th>Ilość</th><th>Zażyj</th></tr>";
-$sql = "SELECT 'IdLeku', 'Nazwa', 'DataWazn', 'Ilosc' FROM 'leki'";
-$result = mysqli_query($dbcon, $sql);
+echo"<table border=1><tr><th>ID leku</th><th>Nazwa</th><th>Data ważności</th><th>Ilość</th></tr>";
+$sql = "SELECT IdLeku, Nazwa, DataWazn, Ilosc FROM leki";
+$result = mysqli_query($dbconn, $sql);
 
-if (mysqli_num_rows($result)>0){
+if (mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result)){
-        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td>".$row["Ilosc"]."</td><td><a href='./zazycie.php?ajdi=".
+        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td>".$row["Ilosc"]."</td><td>
+            <a href='./zazycie.php?ajdi=".$row["IdLeku"]."&ile=".$row["Ilosc"]."'>Zażyj</a></td>
+            <td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."'>Zutylizuj</a></td></tr>";
     }
+}else {
+    echo "Brak wyników! Apteczka jest pusta!";
 }
+mysqli_close($dbconn);
+echo"</table>";
+?>
