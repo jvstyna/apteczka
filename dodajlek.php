@@ -1,9 +1,10 @@
 <?php
 session_start();
 echo "<meta charset ='UTF-8'>";
-
-$nazwaleku=$iloscleku=$datawaznosci="";
-$nazwaErr=$iloscErr=$dataErr="";
+$id_apt = $_GET["idapt"];
+$ajdi = $_GET["ajdi"] ?? null;
+$iloscleku=$datawaznosci="";
+$iloscErr=$dataErr="";
 
 function chgw($dane)
 {
@@ -15,29 +16,21 @@ function chgw($dane)
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
-    if (empty($_POST["nazwaleku"]))
+    if (empty($_POST["ilosc"]))
     {
-        $nazwaErr = "Podaj nazwę leku!";
+        $iloscErr = "Podaj ilość leku!";
     }
     else
     {
-        $nazwaleku=chgw($_POST["nazwaleku"]);
+        $iloscleku=chgw($_POST["ilosc"]);
     }
-    if(empty($_POST["iloscleku"]))
-    {
-        $iloscErr = "Podaj ilość!";
-    }
-    else
-    {
-        $iloscleku=chgw($_POST["iloscleku"]);
-    }
-    if(empty($_POST["datawaznosci"]))
+    if(empty($_POST["data"]))
     {
         $dataErr = "Podaj datę ważności!";
     }
     else
     {
-        $datawaznosci=chgw($_POST["datawaznosci"]);
+        $datawaznosci=chgw($_POST["data"]);
     }
 }
 
@@ -50,16 +43,16 @@ $dbconn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$dbconn){
     die("Connection failed: ".mysqli_connect_error());
 }
-
-$sql = "INSERT INTO leki (Nazwa, DataWazn, Ilosc) VALUES ('$nazwaleku', '$datawaznosci', '$iloscleku')";
+$sel_sql = "SELECT Nazwa FROM leki where IdLeku=$ajdi";
+$row_nazwaleku = mysqli_fetch_assoc(mysqli_query($dbconn, $sel_sql));
+$nazwaleku = $row_nazwaleku["Nazwa"];
+$sql = "INSERT INTO leki_w_apteczkach (IdApteczki, IdLeku, Nazwa, Ilosc, DataWazn) VALUES ('$id_apt', '$ajdi', '$nazwaleku', '$iloscleku', '$datawaznosci')";
 if (mysqli_query($dbconn, $sql)) {
-        echo "Dopisano lek do apteczki";
+        echo "Dopisano lek do apteczki!<br>";
     }
     else{
-        echo "Błąd: ".$sql."<br>".mysqli_error($conn);
+        echo "Błąd: ".$sql."<br>".mysqli_error($dbconn);
     }
-    echo "<br><a href='./nowylek.php'>...:::Dodaj kolejny lek:::...</a><br>";
-    echo "<br><a href='./apteka.php'>...:::Zawartość apteczki:::...</a><br>";
+    echo "<br><a href='./nowylek.php?idapt=".$id_apt."'>...:::Dodaj kolejny lek:::...</a><br>";
+    echo "<br><a href='./apteka.php?idapt=".$id_apt."'>...:::Zawartość apteczki:::...</a><br>";
     ?>
-    </body>
-</html>
