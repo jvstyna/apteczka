@@ -34,12 +34,13 @@ session_start();
                 }
 
                 if (isset($_SESSION["current_user"])) {
-                    echo '<div class="login_window">
-                    <div class="logged_in_header">Oto twoja apteczka </div>
-                    <div class="logged_in_options"><a href="./nowylek.php">Dodaj nowy lek</a></div>
-                    <div class="logged_in_options"><a href="./apteka.php">Zawartość apteczki</a></div>
-                    <div class="logged_in_options"><a href="./wyloguj.php">Wyloguj się</a></div>
-                    </div>';    
+                    echo "Użytkownik jest zalogowany: ".$_SESSION["current_user"]."<br><br>";
+                    echo "Stwórz nową apteczkę<br>";
+                    echo "<form method=\"POST\" action=\"./stworzapt.php\">
+                            <input type=\"text\" name=\"apteczkanowa\" placeholder=\"Nazwa apteczki\"><br>
+                            <input type=\"submit\" name=\"submit\" value=\"Utwórz\"><br><br>
+                            </form>";
+                    echo "<a href='./wybierzapt.php'>...:::Wybierz apteczkę:::...</a><br><br>";
                 }
                 else {
                     echo '<div class="login_window"><div class="login_wrong_data">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
