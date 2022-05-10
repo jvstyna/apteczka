@@ -1,8 +1,8 @@
 <?php 
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
     <html>
@@ -34,12 +34,15 @@ error_reporting(E_ALL);
                 }
 
                 if (isset($_SESSION["current_user"])) {
-                    echo '<div class="login_window"><div class="login_header">Oto twoja apteczka <br>
-                    <a href="./nowylek.php">Dodaj nowy lek</a><br>
-                    <a href="./apteka.php">Zawartość apteczki</a></div></div>';    
+                    echo '<div class="login_window">
+                    <div class="logged_in_header">Oto twoja apteczka </div>
+                    <div class="logged_in_options"><a href="./nowylek.php">Dodaj nowy lek</a></div>
+                    <div class="logged_in_options"><a href="./apteka.php">Zawartość apteczki</a></div>
+                    <div class="logged_in_options"><a href="./wyloguj.php">Wyloguj się</a></div>
+                    </div>';    
                 }
                 else {
-                    echo '<div class="login_window"><div class="login_header">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
+                    echo '<div class="login_window"><div class="login_wrong_data">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
              
                 }
                 ?>
