@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$id_apt = $_GET["idapt"] ?? null;
+$id_apt = $_POST['idapt'] ?? $_GET["idapt"];
 echo "<meta charset='UTF-8'>";
 
 $nazwaleku="";
@@ -22,7 +22,8 @@ echo "Wyszukaj lek<br>";
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <input type="text" name="nazwaleku" placeholder="Nazwa leku" <?php if (isset($_POST['nazwaleku']) || isset($_GET['nazwaleku'])): ?>value="<?= $_POST["nazwaleku"] ?? $_GET['nazwaleku'] ?>"<?php endif ?>><br>
-<input type="submit" name="submit" value="Wyszukaj"><br>
+<input type="hidden" name="idapt" value="<?= $_POST['idapt'] ?? $_GET['idapt'] ?>">
+    <input type="submit" name="submit" value="Wyszukaj"><br>
 </form>
 
 <?php
