@@ -1,6 +1,6 @@
 <?php 
 session_start(); 
-$id_apt = $_GET["idapt"];
+$id_apt = $_GET["idapt"] ?? null;
 echo "<meta charset='UTF-8'>";
 echo "<a href='./nowylek.php?idapt=".$id_apt."'>...:::Nowy Lek:::...</a><br>";
 echo "<a href='./zazycia.php?idapt=".$id_apt."'>...:::Kto co zażył:::...</a><br>";
@@ -22,7 +22,7 @@ $result_termin = mysqli_query($dbconn, $sql_termin);
 
 if (mysqli_num_rows($result_termin) > 0){
     while($row = mysqli_fetch_assoc($result_termin)){
-        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."?idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
+        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
     }
 }else {
     echo "Brak wyników! Wszystkie leki są ważne!";
