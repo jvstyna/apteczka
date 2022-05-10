@@ -1,7 +1,7 @@
 <?php
 session_start();
 echo"<meta charset='UTF-8'>";
-
+$id_apt = $_GET["idapt"] ?? null;
 $lekid=$lekil=$uzytkownik=$zostalo="";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
@@ -20,17 +20,17 @@ if (!$dbconn){
     die("Connection failed: ".mysqli_connect_error());
 }
 
-$sql = "INSERT INTO zazycia (IdZazycia, user_id, IdLeku, Ilosc, DataZazycia)
-        VALUES (NULL, '$uzytkownik', '$lekid', '$lekil', CURRENT_DATE())";
+$sql = "INSERT INTO zazycia (IdZazycia, user_id, IdApteczki, IdLeku, Ilosc, DataZazycia)
+        VALUES (NULL, '$uzytkownik', '$id_apt', '$lekid', '$lekil', CURRENT_DATE())";
 
 if (mysqli_query($dbconn, $sql)){
     echo "Dopisano ";
 } 
 else {
-    echo "Błąd: ".$esql."<br>".mysqli_error($dbconn);
+    echo "Błąd: ".$sql."<br>".mysqli_error($dbconn);
 }
 
-$esql = "SELECT Ilosc FROM leki WHERE IdLeku = $lekid";
+$esql = "SELECT Ilosc FROM leki_w_apteczkach WHERE IdLeku = $lekid and IdApteczki = $id_apt";
 $eresult = mysqli_query($dbconn, $esql);
 
 if (mysqli_num_rows($eresult) > 0){
@@ -39,7 +39,7 @@ if (mysqli_num_rows($eresult) > 0){
     }
 }
 
-$sqle = "UPDATE leki SET Ilosc = $zostalo WHERE IdLeku = $lekid";
+$sqle = "UPDATE leki_w_apteczkach SET Ilosc = $zostalo WHERE IdLeku = $lekid and IdApteczki = $id_apt";
 
 
 if (mysqli_query($dbconn, $sqle)){
@@ -49,6 +49,5 @@ else{
     echo "Błąd: ".$sqle."<br>".mysqli_error($dbconn);
 }
 
-echo "<a href='./apteka.php'>...:::Zawartość Apteczki:::...</a><br>";
-echo "<a href='./zazycia.php'>...:::Kto co zażył:::...</a><br>";
+echo "<a href='./apteka.php?idapt=".$id_apt."'>...:::Zawartość Apteczki:::...</a><br>";
 ?>
