@@ -1,3 +1,10 @@
+<html>
+    <head>
+        <link rel ="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="apteczka_logo.ico"/>
+        <title>Domowa Apteczka</title>
+    </head>
+    <body>
 <?php
 session_start();
 echo "<meta charset ='UTF-8'>";
@@ -15,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 {
     if (empty($_POST["name"]))
     {
-        $imErr = "Musisz podać imię i nazwisko!";
+        $imErr = "Musisz podać imię i nazwisko!<br>";
     }
     else
     {
@@ -23,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
     if(empty($_POST["email"]))
     {
-        $mailErr = "Musisz podać E-mail!";
+        $mailErr = "Musisz podać E-mail!<br>";
     }
     else
     {
@@ -31,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
     if(empty($_POST["userpassword"]))
     {
-        $passErr = "Musisz podać hasło!";
+        $passErr = "Musisz podać hasło!<br>";
     }
     else
     {
@@ -50,16 +57,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $user_password = mysqli_real_escape_string($dbconn, $passwd);
 
     $user_password_hash = password_hash($user_password, PASSWORD_DEFAULT);
-    echo "<br>".$imErr."<br".$mailErr."<br>".$passErr;
+    
+    if($mailErr=="" && $imErr=="" && $passErr==""){
 
-    if (mysqli_query($dbconn, "INSERT INTO users (user_fullname, user_email, user_passwordhash) 
-        VALUES ('$user_fullname', '$user_email', '$user_password_hash')")) {
-            echo "Rejestracja przebiegła pomyślnie";
+        if (mysqli_query($dbconn, "INSERT INTO users (user_fullname, user_email, user_passwordhash) 
+            VALUES ('$user_fullname', '$user_email', '$user_password_hash')")) {
+                echo '<div class="login_window"><div class="login_header">Rejestracja przebiegła pomyślnie<br><a href="./logowanie.php">Zaloguj się</a></div></div>';
+            }
+            else{
+                echo "Nieoczekiwany błąd";
+            }
         }
-        else{
-            echo "Nieoczekiwany błąd";
-        }
-        ?>
-        <br><a href="./logowanie.php">...:::Zaloguj się:::...</a><br>
-        </body>
+    else{
+
+        echo '<div class="login_window"><div class="login_header">'.$imErr.''.$mailErr.''.$passErr.'<a href="./rejestracja.php">Spróbuj ponownie</a></div></div>';
+
+    }
+            ?>
+    </body>
 </html>

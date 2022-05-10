@@ -8,7 +8,9 @@ error_reporting(E_ALL);
     <html>
         <head>
             <meta charset="UTF-8">
-            <title>...:::Logowanie:::...</title>
+            <link rel ="stylesheet" href="style.css">
+            <link rel="shortcut icon" href="apteczka_logo.ico"/>
+            <title>Domowa Apteczka</title>
         </head>
         <body>
             <?php
@@ -41,9 +43,10 @@ error_reporting(E_ALL);
                     echo "<a href='./wybierzapt.php'>...:::Wybierz apteczkę:::...</a><br><br>";
                 }
                 else {
-                    echo "Użytkownik nie jest zalogowany";
+                    echo '<div class="login_window"><div class="login_header">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
+             
                 }
                 ?>
-            <a href="./wyloguj.php">...:::Wyloguj:::...</a><br>
+            
             </body>
             <html>
