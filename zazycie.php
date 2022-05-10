@@ -1,17 +1,11 @@
 <?php 
 session_start();
-?> 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>...:::Zażywanie:::...</title>
-</head>
-<body>
-    <form method="POST" action="./zazyj.php">
-        <input type="number" name="IdLeku" value="<?php echo $_GET['ajdi']; ?>" placeholder="Nazwa"><br>
-        <input type="number" name="Ilosc" min="1" max="<?php echo $_GET['ile']; ?>" placeholder="Ilość"><br>
-        <input type="submit" name="submit" value="Zażyj">
-</form>
-</body>
-</html>
+$id_apt = $_GET["idapt"] ?? null;
+$ajdi = $_GET["ajdi"] ?? null;
+$ile =  $_GET['ile'] ?? null;
+echo"<form method=\"POST\" action=\"./zazyj.php?idapt=$id_apt\">
+        <input type=\"number\" name=\"IdLeku\" value=$ajdi placeholder=\"Nazwa\"><br>
+        <input type=\"number\" name=\"Ilosc\" min=\"1\" max=$ile placeholder=\"Ilość\"><br>
+        <input type=\"submit\" name=\"submit\" value=\"Zażyj\"><br>
+        </form>";
+?>
