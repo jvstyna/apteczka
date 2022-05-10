@@ -38,8 +38,8 @@ $result_zawartosc = mysqli_query($dbconn, $sql_zawartosc);
 if (mysqli_num_rows($result_zawartosc) > 0){
     while($row = mysqli_fetch_assoc($result_zawartosc)){
         echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td>".$row["Ilosc"]."</td><td>
-            <a href='./zazycie.php?ajdi=".$row["IdLeku"]."&ile=".$row["Ilosc"]."?idapt=".$id_apt."'>Zażyj</a></td>
-            <td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."?idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
+            <a href='./zazycie.php?ajdi=".$row["IdLeku"]."&ile=".$row["Ilosc"]."&idapt=".$id_apt."'>Zażyj</a></td>
+            <td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
     }
 }else {
     echo "Brak wyników! Apteczka jest pusta!";
