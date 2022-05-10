@@ -32,9 +32,13 @@ error_reporting(E_ALL);
                 }
 
                 if (isset($_SESSION["current_user"])) {
-                    echo "Użytkownik jest zalogowany: ".$_SESSION["current_user"]."<br>";
-                    echo "<a href='./nowylek.php'>...:::Nowy Lek:::...</a><br>";
-                    echo "<a href='./apteka.php'>...:::Zawartosc apteczki:::...</a><br>";
+                    echo "Użytkownik jest zalogowany: ".$_SESSION["current_user"]."<br><br>";
+                    echo "Stwórz nową apteczkę<br>";
+                    echo "<form method=\"POST\" action=\"./stworzapt.php\">
+                            <input type=\"text\" name=\"apteczkanowa\" placeholder=\"Nazwa apteczki\"><br>
+                            <input type=\"submit\" name=\"submit\" value=\"Utwórz\"><br><br>
+                            </form>";
+                    echo "<a href='./wybierzapt.php'>...:::Wybierz apteczkę:::...</a><br><br>";
                 }
                 else {
                     echo "Użytkownik nie jest zalogowany";
