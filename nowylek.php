@@ -44,7 +44,7 @@ if (mysqli_num_rows($result) > 0) {
     echo"<table border=1><tr><th>ID leku</th><th>Nazwa leku</th><th>Substancja czynna</th><th>Cena</th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["SubstancjaCzynna"]."</td><td>".$row["Cena"]."</td><td>
-            <a href='./dodajlek.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Zażyj</a></td></tr>";
+            <a href='./paramleku.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Zażyj</a></td></tr>";
     }
     echo "</table>";
 
