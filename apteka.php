@@ -15,20 +15,19 @@ if (!$dbconn){
     die("Connection failed: ".mysqli_connect_error());
 }
 //przeterminowane leki
-echo"Przeterminowane leki<br>";
-echo"<table border=1><tr><th>ID leku</th><th>Nazwa</th><th>Data ważności</th><th>Ilość</th></tr>";
+echo"<br>Przeterminowane leki<br>";
+echo"<table border=1><tr><th>ID leku</th><th>Nazwa</th><th>Data ważności</th></tr>";
 $sql_termin = "SELECT IdLeku, Nazwa, DataWazn FROM leki_w_apteczkach WHERE TO_DAYS(CURDATE())>TO_DAYS(DataWazn)";
 $result_termin = mysqli_query($dbconn, $sql_termin);
 
 if (mysqli_num_rows($result_termin) > 0){
     while($row = mysqli_fetch_assoc($result_termin)){
-        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td>".$row["Ilosc"]."</td><td>
-            <a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."?idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
+        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."?idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
     }
 }else {
     echo "Brak wyników! Wszystkie leki są ważne!";
 }
-echo"</table>";
+echo"</table><br>";
 
 //wyswietlanie leków
 echo"Zawartość apteczki<br>";
