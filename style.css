@@ -27,13 +27,20 @@ a:hover{
 
 
 .login_window,.register_window {
-    max-width: 450px;
+    max-width: 550px;
     max-height:450px;
     padding: 15px 35px 45px;
     margin: auto;
     margin-top: 5%;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.login_window{
+  display:flex;
+  align-items: stretch;
+  justify-content: space-evenly;
+  gap: 24px;
 }
 
   .login_header,.register_header {
@@ -66,7 +73,7 @@ a:hover{
   }
 
 
-  input[type=submit]
+  input[type=submit], input[type=button]
   {
     margin-top:5%;
     background-color: #2a5bfd;
@@ -78,7 +85,7 @@ a:hover{
     cursor: pointer;
   }
   
-  input[type=submit]:hover {
+  input[type=submit]:hover, input[type=button]:hover {
     background-color: #103ccc;
   }
 
@@ -100,7 +107,13 @@ a:hover{
     font-size:14px;
     padding-top:2%;
     text-align:center
+  }
 
+  .login_window_left,.login_window_right{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
 

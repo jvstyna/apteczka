@@ -33,20 +33,26 @@ error_reporting(E_ALL);
                     }
                 }
 
-                if (isset($_SESSION["current_user"])) {
-                    echo "Użytkownik jest zalogowany: ".$_SESSION["current_user"]."<br><br>";
-                    echo "Stwórz nową apteczkę<br>";
-                    echo "<form method=\"POST\" action=\"./stworzapt.php\">
-                            <input type=\"text\" name=\"apteczkanowa\" placeholder=\"Nazwa apteczki\"><br>
-                            <input type=\"submit\" name=\"submit\" value=\"Utwórz\"><br><br>
-                            </form>";
-                    echo "<a href='./wybierzapt.php'>...:::Wybierz apteczkę:::...</a><br><br>";
-                }
+                if (isset($_SESSION["current_user"])): ?>
+                <div class='login_window'>
+                    <div class="login_window_left">
+                        <div class='login_header'>Stwórz nową apteczkę</div>
+                        <form id="newaptform" method="POST" action="stworzapt.php">
+                            <div class='register_name'><input type="text" name="apteczkanowa" placeholder="Nazwa apteczki"></div>
+                        </form>
+                        <input form="newaptform" type="submit" name="submit" value="Utwórz">
+                    </div>
+                    <div class="login_window_right">
+                        <div class='login_header'>Wybierz apteczkę</div>
+                        <input type="button" onclick="location.href='./wybierzapt.php'" value="Wybierz">
+                    </div>
+                </div>
+                <?php endif;
+               /* }
                 else {
                     echo '<div class="login_window"><div class="login_header">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
              
-                }
+                }*/
                 ?>
-            
             </body>
-            <html>
+            </html>
