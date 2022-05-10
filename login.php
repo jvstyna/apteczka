@@ -8,7 +8,9 @@ error_reporting(E_ALL);
     <html>
         <head>
             <meta charset="UTF-8">
-            <title>...:::Logowanie:::...</title>
+            <link rel ="stylesheet" href="style.css">
+            <link rel="shortcut icon" href="apteczka_logo.ico"/>
+            <title>Domowa Apteczka</title>
         </head>
         <body>
             <?php
@@ -32,14 +34,15 @@ error_reporting(E_ALL);
                 }
 
                 if (isset($_SESSION["current_user"])) {
-                    echo "Użytkownik jest zalogowany: ".$_SESSION["current_user"]."<br>";
-                    echo "<a href='./nowylek.php'>...:::Nowy Lek:::...</a><br>";
-                    echo "<a href='./apteka.php'>...:::Zawartosc apteczki:::...</a><br>";
+                    echo '<div class="login_window"><div class="login_header">Oto twoja apteczka <br>
+                    <a href="./nowylek.php">Dodaj nowy lek</a><br>
+                    <a href="./apteka.php">Zawartość apteczki</a></div></div>';    
                 }
                 else {
-                    echo "Użytkownik nie jest zalogowany";
+                    echo '<div class="login_window"><div class="login_header">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
+             
                 }
                 ?>
-            <a href="./wyloguj.php">...:::Wyloguj:::...</a><br>
+            
             </body>
             <html>
