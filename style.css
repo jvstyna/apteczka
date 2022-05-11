@@ -26,6 +26,7 @@ a:hover{
 
 
 
+
 .login_window,.register_window {
     max-width: 550px;
     max-height:450px;
@@ -168,6 +169,66 @@ a:hover{
     text-align:center;
     font-size:24px;
 
+
+  .login_window_left,.login_window_right{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+.table_div{
+  font-size:18px;
+  text-align:center;
+  justify-content: center;
+  align-items: center;
+  display:flex
+}
+
+tr,td,th{
+  padding-top:2px;
+  padding-bottom:2px;
+  padding-left:5px;
+  padding-right:5px;
+}
+
+.table_window {
+  max-width: 550px;
+  max-height:fit-content;
+  padding: 15px 35px 45px;
+  margin: auto;
+  margin-top: 5%;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.powrot{
+  font-size: 24px;
+  text-align:center;
+  padding-top:5%;
+}
+
+.options{
+  font-size:24px;
+  text-align:center;
+  margin-top: 20px;
+}
+
+input[type=data]
+  {
+      font-size:18px;
+  }
+  
+  .data{
+    font-size: 12px;
+    padding-top:10%;
+    text-align:center
+  }
+
+  .pages{
+    text-align:center;
+    padding-top:10px;
   }
 
   .register_wrong_data {
@@ -256,3 +317,4 @@ tr{
   border: 1px solid rgba(0, 0, 0, 0.1);
 
 }
+

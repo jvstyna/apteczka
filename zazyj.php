@@ -1,3 +1,12 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel ="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="apteczka_logo.ico"/>
+        <title>Domowa Apteczka</title>
+    </head>
+    <body>
+
 <?php
 session_start();
 echo"<meta charset='UTF-8'>";
@@ -24,7 +33,7 @@ $sql = "INSERT INTO zazycia (IdZazycia, user_id, IdApteczki, IdLeku, Ilosc, Data
         VALUES (NULL, '$uzytkownik', '$id_apt', '$lekid', '$lekil', CURRENT_DATE())";
 
 if (mysqli_query($dbconn, $sql)){
-    echo "Dopisano ";
+    echo "<div class='table_window'><div class='login_header'>Dopisano ";
 } 
 else {
     echo "Błąd: ".$sql."<br>".mysqli_error($dbconn);
@@ -43,11 +52,14 @@ $sqle = "UPDATE leki_w_apteczkach SET Ilosc = $zostalo WHERE IdLeku = $lekid and
 
 
 if (mysqli_query($dbconn, $sqle)){
-    echo "i zaaktualizowano!<br>";
+    echo "i zaaktualizowano!</div>";
 }
 else{
     echo "Błąd: ".$sqle."<br>".mysqli_error($dbconn);
 }
 
-echo "<a href='./apteka.php?idapt=".$id_apt."'>...:::Zawartość Apteczki:::...</a><br>";
+echo "<div class='options'><a href='./apteka.php?idapt=".$id_apt."'>Zawartość apteczki</a></div></div>";
 ?>
+
+</body>
+</html>

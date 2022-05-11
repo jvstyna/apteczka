@@ -1,3 +1,12 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel ="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="apteczka_logo.ico"/>
+        <title>Domowa Apteczka</title>
+    </head>
+    <body>
+
 <?php
 session_start();
 echo "<meta charset ='UTF-8'>";
@@ -38,13 +47,14 @@ if (!$dbconn){
 $sql = "INSERT INTO apteczki (NazwaApteczki) VALUES ('$nazwaapteczki')";
 
 if (mysqli_query($dbconn, $sql)) {
-    echo "Utworzono nową apteczkę!<br>";
+    echo "<div class='table_window'><div class='login_header'>Utworzono nową apteczkę!</div>";
     $current_id=mysqli_insert_id($dbconn);
-    echo "<br><a href='./nowylek.php?idapt=".$current_id."'>...:::Dodaj lek:::...</a><br>";
-    echo "<br><a href='./apteka.php?idapt=".$current_id."'>...:::Zawartość apteczki:::...</a><br>";
+    echo "<div class='options'><a href='./nowylek.php?idapt=".$current_id."'>Dodaj lek</a></div>
+    <div class='options'><a href='./apteka.php?idapt=".$current_id."'>Zawartość apteczki</a></div></div>";
 }
 else{
     echo "Błąd: ".$sql."<br>".mysqli_error($conn);
 }
-echo "<br><a href='./wyloguj.php'>...:::Wyloguj:::...</a><br>";
 ?>
+</body>
+</html>

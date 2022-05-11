@@ -17,10 +17,11 @@ session_start();
                 echo "Użytkowik jest zalogowany: ".$_SESSION["current_user"];
             }
             else{
-                echo '<div class="login_window"><div class="logged_in_header">Wylogowano! </div>
-                <div class="logged_in_options"><a href="./logowanie.php">Powrót do strony logowania</a></div></div>'; 
+                echo "<div class='table_window'><div class='login_header'>Wylogowano!";
             }
             ?>
+
+            <div class='options'><a href="./logowanie.php">Zaloguj</a></div>
         </body>
         </html>
         
