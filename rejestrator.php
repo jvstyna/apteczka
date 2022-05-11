@@ -70,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
     else{
 
-        echo '<div class="login_window"><div class="login_header">'.$imErr.''.$mailErr.''.$passErr.'<a href="./rejestracja.php">Spróbuj ponownie</a></div></div>';
+        echo '<div class="login_window"><div class="register_wrong_data">'.$imErr.''.$mailErr.''.$passErr.'<a href="./rejestracja.php">Spróbuj ponownie</a></div></div>';
 
     }
             ?>

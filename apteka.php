@@ -65,8 +65,9 @@ if (mysqli_num_rows($result_zawartosc) > 0){
             <a href='./zazycie.php?ajdi=".$row["IdLeku"]."&ile=".$row["Ilosc"]."&idapt=".$id_apt."'>Zażyj</a></td>
             <td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
     }
-} else {
-    echo "<div class='login_header'>Brak wyników! Apteczka jest pusta!</div>";
+
+}else {
+    echo "<div class='table_window'><div class='login_header'>Brak wyników! Apteczka jest pusta!</div></div>";
 }
 mysqli_close($dbconn);
 echo"</table></div></div>";
