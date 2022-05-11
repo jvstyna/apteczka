@@ -1,4 +1,10 @@
-<?php 
+<html>
+    <head>
+    <meta charset="UTF-8">
+            <link rel ="stylesheet" href="style.css">
+            <link rel="shortcut icon" href="apteczka_logo.ico"/>
+            <title>Domowa Apteczka</title>
+    </head><?php 
 session_start(); 
 $id_apt = $_GET["idapt"] ?? null;
 echo "<meta charset='UTF-8'>";
@@ -42,7 +48,7 @@ if (mysqli_num_rows($result_zawartosc) > 0){
             <td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
     }
 }else {
-    echo "Brak wyników! Apteczka jest pusta!";
+    echo "<div class='table_window'><div class='login_header'>Brak wyników! Apteczka jest pusta!</div></div>";
 }
 mysqli_close($dbconn);
 echo"</table>";
