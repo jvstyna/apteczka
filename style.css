@@ -49,11 +49,16 @@ a:hover{
     font-size:24px;
   }
 
-  .login_email,.register_email {
-      padding-top:5%;
+  .login_email {
     font-size: 16px;
     text-align:center
 
+  }
+
+  .register_email{
+    font-size: 16px;
+    text-align:center;
+    padding-top:5%;
   }
   
   .login_password,.register_password{
@@ -68,7 +73,6 @@ a:hover{
 
   .register_name{
     font-size: 16px;
-    padding-top:5%;
     text-align:center
   }
 
@@ -89,6 +93,40 @@ a:hover{
     background-color: #103ccc;
   }
 
+  input[type=button]
+  {
+    margin-top:5%;
+    background-color: #2a5bfd;
+    color: white;
+    padding: 12px 20px;
+    width:100px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=button]:hover {
+    background-color: #103ccc;
+  }
+
+
+  .button
+  {
+    margin-top:5%;
+    background-color: #2a5bfd;
+    color: white;
+    padding: 12px 20px;
+    width:100px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #103ccc;
+  }
+
+
   input[type=email]
   {
       font-size:18px;
@@ -98,9 +136,24 @@ a:hover{
       font-size:18px
   }
 
+  input[type=number]
+  {
+      font-size:18px;
+  }
+
+  input[type=date]
+  {
+      font-size:18px;
+  }
+
   input[type=password]
   {
       font-size:18px;
+  }
+
+  input{
+    border-radius:4px;
+    border:2px solid rgb(92, 91, 91)
   }
 
   .login_register,.register_login{
@@ -109,12 +162,97 @@ a:hover{
     text-align:center
   }
 
-  .login_window_left,.login_window_right{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+
+  .login_wrong_data {
+    margin-bottom: -10px;
+    text-align:center;
+    font-size:24px;
+
   }
 
+  .register_wrong_data {
+    margin-bottom: -10px;
+    text-align:center;
+    font-size:24px;
+  }
 
+.logged_in_header{
+    margin-bottom: 10px;
+    text-align:center;
+    font-size:32px;
+}
     
+.logged_in_options{
+    margin-bottom: -5px;
+    padding-top:10px;
+    text-align:center;
+    font-size:24px;
+}
+
+
+.dodajlek_header{
+  margin-bottom: 30px;
+  text-align:center;
+  font-size:24px;
+}
+
+.dodajlek_nazwaleku{
+  font-size: 16px;
+  text-align:center
+}
+
+.dodajlek_iloscleku{
+  font-size: 16px;
+    text-align:center
+}
+
+.dodajlek_datawaznosci{
+  font-size: 16px;
+    text-align:center
+}
+
+.dodajlek_dodaj{
+  font-size: 16px;
+}
+
+.dodajlek_powrot{
+  font-size: 16px;
+}
+
+.dodajlek_dodaj, .dodajlek_powrot{
+        display:inline-block;
+        text-align: center;
+        padding-left:5%;
+        padding-right:5%;
+        padding-top:5%;
+          
+    }
+
+.two_buttons{
+    text-align:center;
+}
+
+table{
+  border:1px solid;
+  width:100%;
+  
+}
+
+td{
+  text-align:center;
+}
+
+tr{
+  text-align:center;
+}
+
+.table_window{
+  max-width: 600px;
+  max-height:450px;
+  padding: 10px 20px 20px;
+  margin: auto;
+  margin-top: 10px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+}

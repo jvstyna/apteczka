@@ -1,6 +1,12 @@
-<?php 
+<html>
+    <head>
+    <meta charset="UTF-8">
+            <link rel ="stylesheet" href="style.css">
+            <link rel="shortcut icon" href="apteczka_logo.ico"/>
+            <title>Domowa Apteczka</title>
+    </head><?php 
 session_start(); 
-$id_apt = $_GET["idapt"];
+$id_apt = $_GET["idapt"] ?? null;
 echo "<meta charset='UTF-8'>";
 echo "<a href='./nowylek.php?idapt=".$id_apt."'>...:::Nowy Lek:::...</a><br>";
 echo "<a href='./zazycia.php?idapt=".$id_apt."'>...:::Kto co zażył:::...</a><br>";
@@ -22,7 +28,7 @@ $result_termin = mysqli_query($dbconn, $sql_termin);
 
 if (mysqli_num_rows($result_termin) > 0){
     while($row = mysqli_fetch_assoc($result_termin)){
-        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."?idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
+        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
     }
 }else {
     echo "Brak wyników! Wszystkie leki są ważne!";
@@ -38,11 +44,11 @@ $result_zawartosc = mysqli_query($dbconn, $sql_zawartosc);
 if (mysqli_num_rows($result_zawartosc) > 0){
     while($row = mysqli_fetch_assoc($result_zawartosc)){
         echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["DataWazn"]."</td><td>".$row["Ilosc"]."</td><td>
-            <a href='./zazycie.php?ajdi=".$row["IdLeku"]."&ile=".$row["Ilosc"]."?idapt=".$id_apt."'>Zażyj</a></td>
-            <td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."?idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
+            <a href='./zazycie.php?ajdi=".$row["IdLeku"]."&ile=".$row["Ilosc"]."&idapt=".$id_apt."'>Zażyj</a></td>
+            <td><a href='./zutylizuj.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Zutylizuj</a></td></tr>";
     }
 }else {
-    echo "Brak wyników! Apteczka jest pusta!";
+    echo "<div class='table_window'><div class='login_header'>Brak wyników! Apteczka jest pusta!</div></div>";
 }
 mysqli_close($dbconn);
 echo"</table>";

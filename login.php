@@ -1,8 +1,8 @@
 <?php 
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
     <html>
@@ -50,7 +50,7 @@ error_reporting(E_ALL);
                 <?php endif;
                /* }
                 else {
-                    echo '<div class="login_window"><div class="login_header">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
+                    echo '<div class="login_window"><div class="login_wrong_data">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
              
                 }*/
                 ?>

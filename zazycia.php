@@ -1,10 +1,10 @@
 <?php 
 session_start();
 echo "<meta charset='UTF-8'>";
+$id_apt = $_GET["idapt"] ?? null;
 
-
-echo "<a href='./nowylek.php'>...:::Nowy Lek:::...</a><br>";
-echo "<a href='./apteka.php'>...:::Zawartość apteczki:::...</a><br>";
+echo "<a href='./nowylek.php?idapt=".$id_apt."'>...:::Nowy Lek:::...</a><br>";
+echo "<a href='./apteka.php?idapt=".$id_apt."'>...:::Zawartość apteczki:::...</a><br>";
 echo "<a href='./wyloguj.php'>...:::Wyloguj:::...</a><br>";
 
 $servername = "mysql.agh.edu.pl";
@@ -20,9 +20,9 @@ if (!$dbconn){
 echo"<table border=1><tr><th>ID zażycia</th><th>Kto zażył</th><th>Co zażył</th>
     <th>Ile zażył</th><th>Kiedy zażył</th></tr>";
 
-$sql = "SELECT zazycia.IdZazycia, users.user_fullname, leki.Nazwa, zazycia.Ilosc, zazycia.DataZazycia
-    FROM ((zazycia INNER JOIN users ON zazycia.user_id = users.user_id)
-    INNER JOIN leki ON zazycia.IdLeku = leki.IdLeku)";
+$sql = "SELECT zazycia.IdZazycia, users.user_fullname, leki_w_apteczkach.Nazwa, zazycia.Ilosc, zazycia.DataZazycia
+    FROM ((zazycia INNER JOIN users ON zazycia.user_id = users.user_id) 
+    INNER JOIN leki_w_apteczkach ON zazycia.IdLeku = leki_w_apteczkach.IdLeku) WHERE zazycia.IdApteczki = $id_apt";
     
 $result = mysqli_query($dbconn, $sql);
 
