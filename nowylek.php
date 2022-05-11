@@ -1,7 +1,15 @@
+<html>
+        <head>
+            <meta charset="UTF-8">
+            <link rel ="stylesheet" href="style.css">
+            <link rel="shortcut icon" href="apteczka_logo.ico"/>
+            <title>Domowa Apteczka</title>
+        </head>
+        <body>
+
 <?php 
 session_start();
 $id_apt = $_POST['idapt'] ?? $_GET["idapt"];
-echo "<meta charset='UTF-8'>";
 
 $nazwaleku="";
 
@@ -16,15 +24,15 @@ if (!$dbconn){
     die("Connection failed: ".mysqli_connect_error());
 }
 mysqli_set_charset($dbconn, "utf8");
-echo "Wyszukaj lek<br>";
+echo "<div class='table_window'><div class='login_header'>Wyszukaj lek</div>";
 
 ?>
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-<input type="text" name="nazwaleku" placeholder="Nazwa leku" <?php if (isset($_POST['nazwaleku']) || isset($_GET['nazwaleku'])): ?>value="<?= $_POST["nazwaleku"] ?? $_GET['nazwaleku'] ?>"<?php endif ?>><br>
-<input type="hidden" name="idapt" value="<?= $_POST['idapt'] ?? $_GET['idapt'] ?>">
-    <input type="submit" name="submit" value="Wyszukaj"><br>
-</form>
+<div class="register_name"><input type="text" name="nazwaleku" placeholder="Nazwa leku" <?php if (isset($_POST['nazwaleku']) || isset($_GET['nazwaleku'])): ?>value="<?= $_POST["nazwaleku"] ?? $_GET['nazwaleku'] ?>"<?php endif ?>>
+<input type="hidden" name="idapt" value="<?= $_POST['idapt'] ?? $_GET['idapt'] ?>"></div>
+    <div class="login_submit"><input type="submit" name="submit" value="Wyszukaj"></div>
+</form></div>
 
 <?php
 if (!isset($_POST['nazwaleku']) && !isset($_GET['nazwaleku'])) return;
@@ -42,22 +50,35 @@ $result = mysqli_query($dbconn, $sql);
 $total = mysqli_fetch_assoc(mysqli_query($dbconn, $sqlTotal))['total'];
 
 if (mysqli_num_rows($result) > 0) {
-    echo"<table border=1><tr><th>ID leku</th><th>Nazwa leku</th><th>Substancja czynna</th><th>Cena</th></tr>";
+    echo"<div class='table_window'><div class='table_div'>
+        <table border=1>
+            <tr>
+                <th>ID leku</th>
+                <th>Nazwa leku</th>
+                <th>Substancja czynna</th>
+                <th>Cena</th>
+            </tr>";
     while($row = mysqli_fetch_assoc($result)) {
-        echo "<tr><td>".$row["IdLeku"]."</td><td>".$row["Nazwa"]."</td><td>".$row["SubstancjaCzynna"]."</td><td>".$row["Cena"]."</td><td>
-            <a href='./paramleku.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Dodaj</a></td></tr>";
+        echo "<tr>
+                <td>".$row["IdLeku"]."</td>
+                <td>".$row["Nazwa"]."</td>
+                <td>".$row["SubstancjaCzynna"]."</td>
+                <td>".$row["Cena"]."</td>
+                <td><a href='./paramleku.php?ajdi=".$row["IdLeku"]."&idapt=".$id_apt."'>Dodaj</a></td>
+            </tr>";
     }
-    echo "</table>";
+    echo "</table></div>";
 
     $i = 1;
-    echo "<br>";
-    echo "<div>";
+    echo "<div class='pages'>";
     do {
         echo "<span><a href=\"?nazwaleku=$nazwaleku&page=$i\">$i</a></span>&nbsp;";
     } while ($i++ < ceil($total/$limit));
-    echo "</div>";
 
 } else {
-    echo "Brak wyników! Nie ma takiego leku!";
+    echo "<div class='table_window'><div class='login_header'>Brak wyników! Nie ma takiego leku!";
 }
+echo"</div></div>";
 ?>
+</body>
+</html>

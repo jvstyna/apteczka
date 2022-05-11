@@ -5,7 +5,9 @@ session_start();
     <html>
         <head>
             <meta charset="UTF-8">
-            <title>...:::Wyloguj:::...</title>
+            <link rel ="stylesheet" href="style.css">
+            <link rel="shortcut icon" href="apteczka_logo.ico"/>
+            <title>Domowa Apteczka</title>
         </head>
         <body>
             <?php
@@ -15,11 +17,11 @@ session_start();
                 echo "Użytkowik jest zalogowany: ".$_SESSION["current_user"];
             }
             else{
-                echo "Użytkownik nie jest zalogowany";
+                echo "<div class='table_window'><div class='login_header'>Wylogowano!";
             }
             ?>
 
-            <a href="./logowanie.php">...:::Zaloguj:::...</a><br>
+            <div class='options'><a href="./logowanie.php">Zaloguj</a></div>
         </body>
         </html>
         

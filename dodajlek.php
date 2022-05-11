@@ -1,3 +1,12 @@
+<html>
+        <head>
+            <meta charset="UTF-8">
+            <link rel ="stylesheet" href="style.css">
+            <link rel="shortcut icon" href="apteczka_logo.ico"/>
+            <title>Domowa Apteczka</title>
+        </head>
+        <body>
+
 <?php
 session_start();
 echo "<meta charset ='UTF-8'>";
@@ -48,11 +57,15 @@ $row_nazwaleku = mysqli_fetch_assoc(mysqli_query($dbconn, $sel_sql));
 $nazwaleku = $row_nazwaleku["Nazwa"];
 $sql = "INSERT INTO leki_w_apteczkach (IdApteczki, IdLeku, Nazwa, Ilosc, DataWazn) VALUES ('$id_apt', '$ajdi', '$nazwaleku', '$iloscleku', '$datawaznosci')";
 if (mysqli_query($dbconn, $sql)) {
-        echo "Dopisano lek do apteczki!<br>";
+        echo "<div class='table_window'><div class='login_header'>Dopisano lek do apteczki!</div>";
     }
     else{
         echo "Błąd: ".$sql."<br>".mysqli_error($dbconn);
     }
-    echo "<br><a href='./nowylek.php?idapt=".$id_apt."'>...:::Dodaj kolejny lek:::...</a><br>";
-    echo "<br><a href='./apteka.php?idapt=".$id_apt."'>...:::Zawartość apteczki:::...</a><br>";
+    echo "<div class='options'><a href='./nowylek.php?idapt=".$id_apt."'>Dodaj kolejny lek</a></div>";
+    echo "<div class='options'><a href='./apteka.php?idapt=".$id_apt."'>Zawartość apteczki</a></div></div>";
+
+
     ?>
+    </body>
+    </html>

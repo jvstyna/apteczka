@@ -1,3 +1,12 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel ="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="apteczka_logo.ico"/>
+        <title>Domowa Apteczka</title>
+    </head>
+    <body>
+
 <?php
 session_start();
 echo "<meta charset='UTF-8'>";
@@ -17,12 +26,14 @@ if (!$dbconn){
 $sql = "DELETE FROM leki_w_apteczkach WHERE IdLeku = $ajdi and IdApteczki = $id_apt";
 
 if (mysqli_query($dbconn, $sql)){
-    echo "Zutylizowano!<br>";
+    echo "<div class='table_window'><div class='login_header'>Zutylizowano!</div>";
 }
 else{
     echo "Błąd: ".$sql."<br>".mysqli_error($dbconn);
 }
 
-echo "<a href='./apteka.php?idapt=".$id_apt."'>...:::Zawartość apteczki:::...</a><br>";
+echo "<div class='login_header'><a href='./apteka.php?idapt=".$id_apt."'>Powrót</a></div></div>";
 
 ?>
+</body>
+</html>

@@ -1,8 +1,6 @@
 <?php 
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 ?>
 <!DOCTYPE html>
     <html>
@@ -19,10 +17,10 @@ error_reporting(E_ALL);
                 $password = "87StdMvvAJYA9R60";
                 $dbname = "jkrzywdz";
 
-                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 $dbconn=mysqli_connect($servername, $username, $password, $dbname);
-                $user_password=mysqli_real_escape_string($dbconn, $_POST["userpassword"]);
-                $user_email=mysqli_real_escape_string($dbconn, $_POST["email"]);
+                $user_password=mysqli_real_escape_string($dbconn, $_POST["userpassword"] ?? NULL);
+                $user_email=mysqli_real_escape_string($dbconn, $_POST["email"]?? NULL);
                 $query=mysqli_query($dbconn, "SELECT * FROM users WHERE user_email = '$user_email'");
 
                 if(mysqli_num_rows($query) > 0) {
@@ -47,12 +45,8 @@ error_reporting(E_ALL);
                         <input type="button" onclick="location.href='./wybierzapt.php'" value="Wybierz">
                     </div>
                 </div>
-                <?php endif;
-               /* }
-                else {
-                    echo '<div class="login_window"><div class="login_header">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
-             
-                }*/
-                ?>
+                <?php else:?>
+                    <div class="login_window"><div class="login_header">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
+                <?php endif;?>
             </body>
             </html>

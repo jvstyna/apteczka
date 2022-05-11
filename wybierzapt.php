@@ -26,26 +26,26 @@ if (!$dbconn){
 
                 if (mysqli_num_rows($result) > 0){
                     echo "<div class='table_window'>
-                            <div class='login_header'>Wybierz apteczkę</div><div class='table_div'><table border='1px solid'>
+                            <div class='login_header'>Wybierz apteczkę</div>
+                            <div class='table_div'><table border='1px solid'>
                             <tr>
                                 <th>ID Apteczki</th>
                                 <th>Nazwa</th>
                             </tr>";
                     while($row = mysqli_fetch_assoc($result)){
-                        echo "
-                                    <tr>
-                                        <td>".$row['IdApteczki']."</td>
-                                        <td>".$row['NazwaApteczki']."</td>
-                                        <td><a href='./apteka.php?idapt'=".$row['IdApteczki'].">Wybierz apteczkę</a></td>
-                                    </tr>";
+                        
+                        echo "<tr>
+                                <td>".$row['IdApteczki']."</td>
+                                <td>".$row['NazwaApteczki']."</td>
+                                <td><a href='./apteka.php?idapt=".$row['IdApteczki']."'>Wybierz apteczkę</a></td>
+                             </tr>";
                     } 
-                    "</table>
-                    </div>
-                    </div>";
+                    echo "</table></div><div class='powrot'><a href='./login.php'>Powrót</a></div>";
                 }
                 else {
-                    echo "Brak wyników! W bazie nie ma żadnej apteczki!";
+                    echo "<div class='table_window'><div class='login_header'>Brak wyników! W bazie nie ma żadnej apteczki!</div><div class='powrot'><a href='./login.php'>Powrót</a></div></div>";
                 }
-            ?>
+            ?>  
+
             </body>
             </html>

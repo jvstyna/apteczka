@@ -140,3 +140,31 @@ tr,td,th{
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.powrot{
+  font-size: 24px;
+  text-align:center;
+  padding-top:5%;
+}
+
+.options{
+  font-size:24px;
+  text-align:center;
+  margin-top: 20px;
+}
+
+input[type=data]
+  {
+      font-size:18px;
+  }
+  
+  .data{
+    font-size: 12px;
+    padding-top:10%;
+    text-align:center
+  }
+
+  .pages{
+    text-align:center;
+    padding-top:10px;
+  }
