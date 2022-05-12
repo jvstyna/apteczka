@@ -40,7 +40,7 @@ if (!isset($_POST['nazwaleku']) && !isset($_GET['nazwaleku'])) return;
 $nazwaleku = $_POST["nazwaleku"] ?? $_GET['nazwaleku'];
 $page = $_GET['page'] ?? 1;
 $limit = 10;
-
+$id_apt = $_POST['idapt'] ?? $_GET['idapt'];
 $offset = ($page - 1) * $limit;
 
 $sql = "SELECT IdLeku, Nazwa, SubstancjaCzynna, Cena FROM leki WHERE Nazwa LIKE \"%$nazwaleku%\" LIMIT $offset, $limit";
@@ -72,7 +72,7 @@ if (mysqli_num_rows($result) > 0) {
     $i = 1;
     echo "<div class='pages'>";
     do {
-        echo "<span><a href=\"?nazwaleku=$nazwaleku&page=$i\">$i</a></span>&nbsp;";
+        echo "<span><a href=\"?idapt=$id_apt&nazwaleku=$nazwaleku&page=$i\">$i</a></span>&nbsp;";
     } while ($i++ < ceil($total/$limit));
 
 } else {

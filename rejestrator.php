@@ -52,9 +52,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $dbname = "jkrzywdz";
 
     $dbconn = mysqli_connect($servername, $username, $password, $dbname);
-    $user_fullname = mysqli_real_escape_string($dbconn, $name);
-    $user_email = mysqli_real_escape_string($dbconn, $email);
-    $user_password = mysqli_real_escape_string($dbconn, $passwd);
+    $user_fullname = mysqli_real_escape_string($dbconn, $name ?? null);
+    $user_email = mysqli_real_escape_string($dbconn, $email ?? null);
+    $user_password = mysqli_real_escape_string($dbconn, $passwd ?? null);
 
     $user_password_hash = password_hash($user_password, PASSWORD_DEFAULT);
     
