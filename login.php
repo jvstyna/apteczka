@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 ?>
 <!DOCTYPE html>
     <html>
@@ -48,5 +47,6 @@ session_start();
                 <?php else:?>
                     <div class="login_window"><div class="login_header">Nieprawidłowy e-mail lub hasło! <br><a href="./logowanie.php">Spróbuj ponownie</a></div></div>';
                 <?php endif;?>
+
             </body>
             </html>
